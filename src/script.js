@@ -1,4 +1,8 @@
 const container = document.querySelector(".container")
+const paint = document.querySelector(".Paint")
+const eraser = document.querySelector(".Eraser")
+
+let togglerValue = 0
 
 for(let i = 0; i < 16; i++){
     const div = document.createElement('div')
@@ -9,7 +13,14 @@ for(let i = 0; i < 16; i++){
 const boxes = document.querySelectorAll(".box")
 
 function draw(e){
-    e.target.style.backgroundColor = random_rgba()
+    if(togglerValue == 0){
+        e.target.style.backgroundColor = random_rgba()
+    }
+
+    else if(togglerValue == 1){
+        e.target.style.backgroundColor = "white"
+    }
+
 }
 
 function random_rgba() {
@@ -20,6 +31,10 @@ function random_rgba() {
 boxes.forEach(box => {
     box.addEventListener("mouseover", draw);
 });
+
+paint.addEventListener("click",() => togglerValue = 0)
+eraser.addEventListener("click",() => togglerValue = 1)
+
 
 
 
