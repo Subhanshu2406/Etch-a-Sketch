@@ -1,4 +1,3 @@
-const box = document.querySelectorAll(".box")
 const container = document.querySelector(".container")
 
 for(let i = 0; i < 16; i++){
@@ -6,6 +5,8 @@ for(let i = 0; i < 16; i++){
     div.className = "box"
     container.append(div)
 }
+
+const boxes = document.querySelectorAll(".box")
 
 function draw(e){
     e.target.style.backgroundColor = random_rgba()
@@ -16,6 +17,9 @@ function random_rgba() {
     return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',' + r().toFixed(1) + ')';
 }
 
-container.addEventListener("click",draw(e))
+boxes.forEach(box => {
+    box.addEventListener("mouseover", draw);
+});
+
 
 
