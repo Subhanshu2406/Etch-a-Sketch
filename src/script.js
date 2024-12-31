@@ -4,10 +4,8 @@ const eraser = document.querySelector(".Eraser")
 const reset = document.querySelector(".Reset")
 
 let boxes = '' //creating boxes which will contain all grid box divs
-let dimension = 4  //initially 16 by 16 grid
+let dimension = 16  //initially 16 by 16 grid
 let togglerValue = 0 // initial mode is paint
-
-initializeGrid()  
 
 function initializeGrid(){
     drawGrid()
@@ -77,6 +75,9 @@ function resetGrid(){
 paint.addEventListener("click",() => togglerValue = 0)
 eraser.addEventListener("click",() => togglerValue = 1)
 reset.addEventListener("click",resetGrid)
+
+
+initializeGrid()  
 
 
 
