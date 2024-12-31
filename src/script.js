@@ -3,10 +3,16 @@ const paint = document.querySelector(".Paint")
 const eraser = document.querySelector(".Eraser")
 const reset = document.querySelector(".Reset")
 
-let dimension = 4
-let togglerValue = 0
+let boxes = '' //creating boxes which will contain all grid box divs
+let dimension = 4  //initially 16 by 16 grid
+let togglerValue = 0 // initial mode is paint
 
-drawGrid()  //for initial grid
+initializeGrid()  
+
+function initializeGrid(){
+    drawGrid()
+    layoutGrid()
+}
 
 function drawGrid(){
     let boxesNumber = dimension * dimension
@@ -15,9 +21,10 @@ function drawGrid(){
         div.className = "box"
         container.append(div)
     }
+    boxes = document.querySelectorAll(".box")
 }
 
-const boxes = document.querySelectorAll(".box")
+
 
 function draw(e){
     if(togglerValue == 0){
@@ -44,6 +51,18 @@ function removeGrid(){
 function generateGrid(){
     dimension = prompt("The Square grid length should?")
     drawGrid()
+    layoutGrid()
+}
+
+function layoutGrid(){
+    let boxesNumber = dimension * dimension
+    boxes.forEach(item =>{
+        let boxLength = 400/dimension
+        item.style.width = `${boxLength}px`
+    } )
+    boxes.forEach(box => {
+        box.addEventListener("mouseover", draw);
+    });
 }
 
 function resetGrid(){
@@ -51,9 +70,9 @@ function resetGrid(){
     generateGrid()
 }
 
-boxes.forEach(box => {
-    box.addEventListener("mouseover", draw);
-});
+// boxes.forEach(box => {
+//     box.addEventListener("mouseover", draw);
+// });
 
 paint.addEventListener("click",() => togglerValue = 0)
 eraser.addEventListener("click",() => togglerValue = 1)
